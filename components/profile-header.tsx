@@ -13,6 +13,7 @@ import {
   faTiktok,
   faPinterest,
 } from "@fortawesome/free-brands-svg-icons";
+import { trackEvent } from "@/lib/analytics";
 
 const SOCIAL_ICONS = {
   youtube: faYoutube,
@@ -23,9 +24,10 @@ const SOCIAL_ICONS = {
 
 interface ProfileHeaderProps {
   profile: Profile;
+  region?: string;
 }
 
-export function ProfileHeader({ profile }: ProfileHeaderProps) {
+export function ProfileHeader({ profile, region }: ProfileHeaderProps) {
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -77,6 +79,16 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent({
+                      action: "social_click",
+                      category: "engagement",
+                      label: link.platform,
+                      platform: link.platform,
+                      url: link.url,
+                      region: region,
+                    })
+                  }
                 >
                   <FontAwesomeIcon icon={iconDef} className="h-5 w-5" />
                   <span className="sr-only">{link.platform}</span>

@@ -62,7 +62,7 @@ export function RegionClientWrapper({
 
       {children}
 
-      {showCards && <CardGrid cards={cards} />}
+      {showCards && <CardGrid cards={cards} region={currentRegion} />}
     </div>
   );
 }

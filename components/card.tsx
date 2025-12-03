@@ -6,18 +6,37 @@ import Link from "next/link";
 import { Card as UICard } from "@/components/ui/card";
 import { RegionCardContent } from "@/types/cards";
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 interface CardProps {
   content: RegionCardContent;
   id: string;
+  region?: string;
 }
 
-export function Card({ content, id }: CardProps) {
+export function Card({ content, id, region }: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
+  const handleClick = () => {
+    trackEvent({
+      action: "card_click",
+      category: "engagement",
+      label: content.title,
+      card_id: id,
+      card_title: content.title,
+      region,
+      url: content.link,
+    });
+  };
+
   return (
-    <Link href={content.link} target="_blank" rel="noopener noreferrer">
+    <Link
+      href={content.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+    >
       <UICard className="group overflow-hidden transition-transform card-elevated hover:scale-[1.01] cursor-pointer h-full flex flex-col">
         <div className="relative aspect-square w-full overflow-hidden bg-muted">
           {!imageError ? (
