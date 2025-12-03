@@ -1,0 +1,67 @@
+{
+  "cards": [
+    {
+      "id": "card-1",
+      "priority": 1,
+      "regions": {
+        "USA": {
+          "title": "Amazon USA",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://amazon.com"
+        },
+        "Canada": {
+          "title": "Amazon Canada",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://amazon.ca"
+        },
+        "UK": {
+          "title": "Amazon UK",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://amazon.co.uk"
+        },
+        "Germany": {
+          "title": "Amazon Deutschland",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://amazon.de"
+        },
+        "France": {
+          "title": "Amazon France",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://amazon.fr"
+        }
+      }
+    },
+    {
+      "id": "card-2",
+      "priority": 2,
+      "regions": {
+        "USA": {
+          "title": "Partnership USA",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://example.com/usa"
+        },
+        "Canada": {
+          "title": "Partnership Canada",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://example.com/ca"
+        },
+        "UK": {
+          "title": "Partnership UK",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://example.com/uk"
+        },
+        "Germany": {
+          "title": "Partnerschaft Deutschland",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://example.com/de"
+        },
+        "France": {
+          "title": "Partenariat France",
+          "image": "https://via.placeholder.com/400",
+          "link": "https://example.com/fr"
+        }
+      }
+    }
+  ]
+}
+

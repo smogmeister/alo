@@ -1,0 +1,24 @@
+{
+  "name": "Smog",
+  "description": "Connect with us and discover everything we use.",
+  "image": "https://storage.googleapis.com/storage_images_public/smog_profile.JPG",
+  "socialLinks": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@smogmeister1"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/smogmeister1"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@smogmeister"
+    },
+    {
+      "platform": "pinterest",
+      "url": "https://pinterest.com/smogmeister/"
+    }
+  ]
+}
+
