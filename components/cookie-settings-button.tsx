@@ -70,10 +70,10 @@ export function CookieSettingsButton() {
         variant="ghost"
         size="icon"
         onClick={() => setIsSettingsOpen(true)}
-        className="h-6 w-6 text-muted-foreground hover:text-foreground"
+        className="h-6 w-6"
         aria-label="Cookie Settings"
       >
-        <Settings className="h-3 w-3" />
+        <Settings className="h-3 w-3 text-primary" />
       </Button>
 
       <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>

@@ -13,7 +13,7 @@ export function Footer({ region }: { region: Region }) {
 
   return (
     <footer className="border-t py-1">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <RegionClientWrapper initialRegion={region} />
@@ -21,14 +21,14 @@ export function Footer({ region }: { region: Region }) {
           </div>
           <div className="flex items-center gap-2 md:gap-3">
             <Link
-              href="/imprint"
+              href="https://beautified.app/imprint"
               className="hover:text-foreground transition-colors"
             >
               Imprint
             </Link>
             <span className="hidden md:inline">•</span>
             <Link
-              href="/privacy"
+              href="https://beautified.app/privacy"
               className="hover:text-foreground transition-colors"
             >
               Data Privacy

@@ -5,63 +5,123 @@
       "priority": 1,
       "regions": {
         "USA": {
-          "title": "Amazon USA",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://amazon.com"
+          "title": "Heavy duty scratch tree",
+          "image": "https://storage.googleapis.com/storage_images_public/scratchtree.png",
+          "link": "https://amzn.to/4avaeTT"
         },
         "Canada": {
-          "title": "Amazon Canada",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://amazon.ca"
+          "title": "Heavy duty scratch tree",
+          "image": "https://storage.googleapis.com/storage_images_public/scratchtree.png",
+          "link": "https://amzn.to/3Kw2bM6"
         },
         "UK": {
-          "title": "Amazon UK",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://amazon.co.uk"
+          "title": "Heavy duty scratch tree",
+          "image": "https://storage.googleapis.com/storage_images_public/scratchtree.png",
+          "link": "https://amzn.to/4pFyo2g"
         },
         "Germany": {
-          "title": "Amazon Deutschland",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://amazon.de"
+          "title": "Heavy duty scratch tree",
+          "image": "https://storage.googleapis.com/storage_images_public/scratchtree.png",
+          "link": "https://amzn.to/48lu5ni"
         },
         "France": {
-          "title": "Amazon France",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://amazon.fr"
+          "title": "Heavy duty scratch tree",
+          "image": "https://storage.googleapis.com/storage_images_public/scratchtree.png",
+          "link": "https://amzn.to/3Kwehok"
         }
       }
-    },
-    {
-      "id": "card-2",
-      "priority": 2,
-      "regions": {
-        "USA": {
-          "title": "Partnership USA",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://example.com/usa"
-        },
-        "Canada": {
-          "title": "Partnership Canada",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://example.com/ca"
-        },
-        "UK": {
-          "title": "Partnership UK",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://example.com/uk"
-        },
-        "Germany": {
-          "title": "Partnerschaft Deutschland",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://example.com/de"
-        },
-        "France": {
-          "title": "Partenariat France",
-          "image": "https://via.placeholder.com/400",
-          "link": "https://example.com/fr"
+    },{
+        "id": "card-2",
+        "priority": 2,
+        "regions": {
+          "USA": {
+            "title": "Catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/smallstick.png",
+            "link": "https://amzn.to/4rGNW84"
+          },
+          "Canada": {
+            "title": "Catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/smallstick.png",
+            "link": "https://amzn.to/3KeDtzP"
+          },
+          "UK": {
+            "title": "Catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/smallstick.png",
+            "link": "https://amzn.to/4pT0GGV"
+          },
+          "Germany": {
+            "title": "Catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/smallstick.png",
+            "link": "https://amzn.to/48kydnv"
+          },
+          "France": {
+            "title": "Catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/smallstick.png",
+            "link": "https://amzn.to/4pjFo5m"
+          }
+        }
+      },{
+        "id": "card-3",
+        "priority": 3,
+        "regions": {
+          "USA": {
+            "title": "Thick catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/bigstick.png",
+            "link": "https://amzn.to/4iBEbDG"
+          },
+          "Canada": {
+            "title": "Thick catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/bigstick.png",
+            "link": "https://amzn.to/4iykDQK"
+          },
+          "UK": {
+            "title": "Thick catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/bigstick.png",
+            "link": "https://amzn.to/49QhIRb"
+          },
+          "Germany": {
+            "title": "Thick catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/bigstick.png",
+            "link": "https://amzn.to/4oCjvNf"
+          },
+          "France": {
+            "title": "Thick catnip sticks",
+            "image": "https://storage.googleapis.com/storage_images_public/bigstick.png",
+            "link": "https://amzn.to/44D2FXu"
+          }
+        }
+      },
+      {
+        "id": "card-4",
+        "priority": 4,
+        "regions": {
+          "USA": {
+            "title": "Hair remover",
+            "image": "https://storage.googleapis.com/storage_images_public/hairremover.png",
+            "link": "https://amzn.to/4pjD5iI"
+          },
+          "Canada": {
+            "title": "Hair remover",
+            "image": "https://storage.googleapis.com/storage_images_public/hairremover.png",
+            "link": "https://amzn.to/4oyPjTu"
+          },
+          "UK": {
+            "title": "Hair remover",
+            "image": "https://storage.googleapis.com/storage_images_public/hairremover.png",
+            "link": "https://amzn.to/3KqMcyY"
+          },
+          "Germany": {
+            "title": "Hair remover",
+            "image": "https://storage.googleapis.com/storage_images_public/hairremover.png",
+            "link": "https://amzn.to/3M9zvZX"
+          },
+          "France": {
+            "title": "Hair remover",
+            "image": "https://storage.googleapis.com/storage_images_public/hairremover.png",
+            "link": "https://amzn.to/3Y6F5Pb"
+          }
         }
       }
-    }
   ]
 }
 

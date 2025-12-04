@@ -54,7 +54,7 @@ export function RegionSelector({
   const triggerClasses =
     size === "default"
       ? "inline-flex h-9 w-auto text-sm"
-      : "inline-flex w-[140px] h-7 text-xs";
+      : "inline-flex h-7 w-auto max-w-full text-xs";
 
   const labelClasses =
     size === "default" ? "hidden sm:inline" : undefined;

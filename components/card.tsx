@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Star } from "lucide-react";
 import { Card as UICard } from "@/components/ui/card";
 import { RegionCardContent } from "@/types/cards";
 import { useState } from "react";
@@ -38,7 +39,13 @@ export function Card({ content, id, region }: CardProps) {
       onClick={handleClick}
     >
       <UICard className="group overflow-hidden transition-transform card-elevated hover:scale-[1.01] cursor-pointer h-full flex flex-col">
-        <div className="relative aspect-square w-full overflow-hidden bg-muted">
+        <div className="relative aspect-square w-full overflow-hidden bg-white border-b border-border">
+          {id === "card-1" && (
+            <div className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-primary/90 text-primary-foreground border border-primary px-2 py-0.5 text-[10px] font-medium shadow-sm">
+              <Star className="h-3 w-3 text-primary-foreground" />
+              <span>Favourite</span>
+            </div>
+          )}
           {!imageError ? (
             <>
               {imageLoading && (

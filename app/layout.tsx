@@ -17,7 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Smog: Link in bio",
-  description: "Discover everything about smog, including Amazon links, partnerships, social media, and more.",
+  description:
+    "Discover everything about smog, including Amazon links, partnerships, social media, and more.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
