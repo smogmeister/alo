@@ -43,3 +43,4 @@ export function getCardContent(
   return card.regions[region] || null;
 }
 
+

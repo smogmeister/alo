@@ -12,3 +12,4 @@ export interface Profile {
   socialLinks: SocialLink[];
 }
 
+

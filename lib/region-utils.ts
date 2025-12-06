@@ -16,3 +16,4 @@ export function normalizeRegion(region: string | null | undefined): Region {
   return isValidRegion(region) ? region : DEFAULT_REGION;
 }
 
+
