@@ -160,7 +160,7 @@ export function CookieBanner() {
 
       {isMobile ? (
         <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-          <SheetContent side="bottom" className="max-h-[90vh] overflow-y-auto p-0">
+          <SheetContent side="bottom" className="max-h-[90vh] overflow-y-auto p-0 rounded-t-2xl">
             <SheetHeader className="px-4 pt-4 pb-2">
               <SheetTitle>Cookie Settings</SheetTitle>
               <SheetDescription>
