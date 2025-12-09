@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -35,6 +35,7 @@ export function CookieSettingsButton() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
   const isMobile = useIsMobile();
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -73,6 +74,19 @@ export function CookieSettingsButton() {
     setPreferences((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0]?.clientY ?? null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    const deltaY = e.touches[0]?.clientY - touchStartY.current;
+    if (deltaY > 40) {
+      setIsSettingsOpen(false);
+      touchStartY.current = null;
+    }
+  };
+
   return (
     <>
       <button
@@ -86,7 +100,12 @@ export function CookieSettingsButton() {
 
       {isMobile ? (
         <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-          <SheetContent side="bottom" className="max-h-[90vh] overflow-y-auto p-0 rounded-t-2xl">
+          <SheetContent
+            side="bottom"
+            className="max-h-[90vh] overflow-y-auto p-0 rounded-t-2xl"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+          >
             <div className="flex justify-center pt-3 pb-1">
               <button
                 type="button"
