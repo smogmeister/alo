@@ -13,6 +13,16 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+} from "@/components/ui/sheet";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useRegion } from "@/components/region-client-wrapper";
 import type { Region } from "@/types/regions";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
@@ -35,16 +45,18 @@ const DEFAULT_PREFERENCES: CookiePreferences = {
 // European countries that require GDPR cookie consent
 const EUROPEAN_COUNTRIES: Region[] = ["UK", "Germany", "France"];
 
-export function CookieBanner({ region }: { region: Region }) {
+export function CookieBanner() {
+  const { currentRegion } = useRegion();
   const [isVisible, setIsVisible] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     
     // Only show banner for European countries
-    if (!EUROPEAN_COUNTRIES.includes(region)) {
+    if (!EUROPEAN_COUNTRIES.includes(currentRegion)) {
       return;
     }
     
@@ -63,7 +75,7 @@ export function CookieBanner({ region }: { region: Region }) {
     } catch (error) {
       console.error("Error checking cookie consent:", error);
     }
-  }, [region]);
+  }, [currentRegion]);
 
   const savePreferences = (newPreferences: CookiePreferences) => {
     if (typeof window === "undefined") return;
@@ -146,131 +158,245 @@ export function CookieBanner({ region }: { region: Region }) {
         </div>
       </div>
 
-      <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>Cookie Settings</DialogTitle>
-            <DialogDescription>
-              Manage your cookie preferences. You can enable or disable different types of cookies below.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="mt-6 space-y-6">
-            {/* Necessary Cookies */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-semibold">Necessary Cookies</h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Essential for the website to function properly. These cannot be disabled.
-                  </p>
-                </div>
-                <div className="ml-4 shrink-0">
-                  <div className="h-5 w-9 rounded-full bg-primary opacity-50 cursor-not-allowed flex items-center">
-                    <div className="h-4 w-4 rounded-full bg-white ml-0.5" />
+      {isMobile ? (
+        <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+          <SheetContent side="bottom" className="max-h-[90vh] overflow-y-auto p-0">
+            <SheetHeader className="px-4 pt-4 pb-2">
+              <SheetTitle>Cookie Settings</SheetTitle>
+              <SheetDescription>
+                Manage your cookie preferences. You can enable or disable different types of cookies below.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="px-4 pb-4 space-y-6">
+              {/* Necessary Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-semibold">Necessary Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Essential for the website to function properly. These cannot be disabled.
+                    </p>
+                  </div>
+                  <div className="ml-4 shrink-0">
+                    <div className="h-5 w-9 rounded-full bg-primary opacity-50 cursor-not-allowed flex items-center">
+                      <div className="h-4 w-4 rounded-full bg-white ml-0.5" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Functional Cookies */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <h3 className="text-sm font-semibold">Functional Cookies</h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Enable enhanced functionality and personalization.
-                  </p>
-                </div>
-                <button
-                  onClick={() => togglePreference("functional")}
-                  className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
-                    preferences.functional
-                      ? "bg-primary"
-                      : "bg-muted"
-                  }`}
-                  aria-label="Toggle functional cookies"
-                >
-                  <div
-                    className={`h-4 w-4 rounded-full bg-white transition-transform ${
-                      preferences.functional ? "translate-x-4" : "translate-x-0.5"
+              {/* Functional Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Functional Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Enable enhanced functionality and personalization.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("functional")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.functional ? "bg-primary" : "bg-muted"
                     }`}
-                  />
-                </button>
+                    aria-label="Toggle functional cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.functional ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Analytics Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Analytics Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Help us understand how visitors interact with our website.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("analytics")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.analytics ? "bg-primary" : "bg-muted"
+                    }`}
+                    aria-label="Toggle analytics cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.analytics ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Marketing Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Marketing Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Used to deliver personalized advertisements and track campaign performance.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("marketing")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.marketing ? "bg-primary" : "bg-muted"
+                    }`}
+                    aria-label="Toggle marketing cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.marketing ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <SheetFooter className="gap-2 border-t">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setPreferences(DEFAULT_PREFERENCES);
+                }}
+                className="text-xs h-10"
+              >
+                Reset to Default
+              </Button>
+              <Button onClick={handleSavePreferences} className="text-xs h-10">
+                Save Preferences
+              </Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      ) : (
+        <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Cookie Settings</DialogTitle>
+              <DialogDescription>
+                Manage your cookie preferences. You can enable or disable different types of cookies below.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="mt-6 space-y-6">
+              {/* Necessary Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-semibold">Necessary Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Essential for the website to function properly. These cannot be disabled.
+                    </p>
+                  </div>
+                  <div className="ml-4 shrink-0">
+                    <div className="h-5 w-9 rounded-full bg-primary opacity-50 cursor-not-allowed flex items-center">
+                      <div className="h-4 w-4 rounded-full bg-white ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Functional Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Functional Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Enable enhanced functionality and personalization.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("functional")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.functional ? "bg-primary" : "bg-muted"
+                    }`}
+                    aria-label="Toggle functional cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.functional ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Analytics Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Analytics Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Help us understand how visitors interact with our website.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("analytics")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.analytics ? "bg-primary" : "bg-muted"
+                    }`}
+                    aria-label="Toggle analytics cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.analytics ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* Marketing Cookies */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold">Marketing Cookies</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Used to deliver personalized advertisements and track campaign performance.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => togglePreference("marketing")}
+                    className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
+                      preferences.marketing ? "bg-primary" : "bg-muted"
+                    }`}
+                    aria-label="Toggle marketing cookies"
+                  >
+                    <div
+                      className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                        preferences.marketing ? "translate-x-4" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Analytics Cookies */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <h3 className="text-sm font-semibold">Analytics Cookies</h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Help us understand how visitors interact with our website.
-                  </p>
-                </div>
-                <button
-                  onClick={() => togglePreference("analytics")}
-                  className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
-                    preferences.analytics
-                      ? "bg-primary"
-                      : "bg-muted"
-                  }`}
-                  aria-label="Toggle analytics cookies"
-                >
-                  <div
-                    className={`h-4 w-4 rounded-full bg-white transition-transform ${
-                      preferences.analytics ? "translate-x-4" : "translate-x-0.5"
-                    }`}
-                  />
-                </button>
-              </div>
-            </div>
-
-            {/* Marketing Cookies */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <h3 className="text-sm font-semibold">Marketing Cookies</h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Used to deliver personalized advertisements and track campaign performance.
-                  </p>
-                </div>
-                <button
-                  onClick={() => togglePreference("marketing")}
-                  className={`ml-4 shrink-0 h-5 w-9 rounded-full transition-colors ${
-                    preferences.marketing
-                      ? "bg-primary"
-                      : "bg-muted"
-                  }`}
-                  aria-label="Toggle marketing cookies"
-                >
-                  <div
-                    className={`h-4 w-4 rounded-full bg-white transition-transform ${
-                      preferences.marketing ? "translate-x-4" : "translate-x-0.5"
-                    }`}
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <DialogFooter className="mt-6 gap-2">
-            <Button
-              variant="outline"
-              onClick={() => {
-                setPreferences(DEFAULT_PREFERENCES);
-              }}
-              className="text-xs"
-            >
-              Reset to Default
-            </Button>
-            <Button onClick={handleSavePreferences} className="text-xs">
-              Save Preferences
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            <DialogFooter className="mt-6 gap-2">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setPreferences(DEFAULT_PREFERENCES);
+                }}
+                className="text-xs h-10"
+              >
+                Reset to Default
+              </Button>
+              <Button onClick={handleSavePreferences} className="text-xs h-10">
+                Save Preferences
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 }

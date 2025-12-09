@@ -14,6 +14,7 @@ import {
   faPinterest,
 } from "@fortawesome/free-brands-svg-icons";
 import { trackEvent } from "@/lib/analytics";
+import { useRegionOptional } from "@/components/region-client-wrapper";
 
 const SOCIAL_ICONS = {
   youtube: faYoutube,
@@ -28,6 +29,9 @@ interface ProfileHeaderProps {
 }
 
 export function ProfileHeader({ profile, region }: ProfileHeaderProps) {
+  const regionContext = useRegionOptional();
+  const currentRegion = regionContext?.currentRegion ?? region;
+
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -86,7 +90,7 @@ export function ProfileHeader({ profile, region }: ProfileHeaderProps) {
                       label: link.platform,
                       platform: link.platform,
                       url: link.url,
-                      region: region,
+                      region: currentRegion,
                     })
                   }
                 >
