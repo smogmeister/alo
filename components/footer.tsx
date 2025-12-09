@@ -32,7 +32,7 @@ export function Footer() {
             >
               Imprint
             </Link>
-            <span className="hidden md:inline">•</span>
+            <span className="inline">•</span>
             <Link
               href="https://beautified.app/privacy"
               className="hover:text-foreground transition-colors"

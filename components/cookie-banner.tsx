@@ -161,7 +161,15 @@ export function CookieBanner() {
       {isMobile ? (
         <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
           <SheetContent side="bottom" className="max-h-[90vh] overflow-y-auto p-0 rounded-t-2xl">
-            <SheetHeader className="px-4 pt-4 pb-2">
+            <div className="flex justify-center pt-3 pb-1">
+              <button
+                type="button"
+                aria-label="Close cookie settings"
+                onClick={() => setIsSettingsOpen(false)}
+                className="h-1.5 w-12 rounded-full bg-muted-foreground/40 hover:bg-muted-foreground/60 transition-colors"
+              />
+            </div>
+            <SheetHeader className="px-4 pt-1 pb-2">
               <SheetTitle>Cookie Settings</SheetTitle>
               <SheetDescription>
                 Manage your cookie preferences. You can enable or disable different types of cookies below.
