@@ -10,6 +10,7 @@ import {
 } from "react";
 import { RegionSelector, getStoredRegion } from "./region-selector";
 import { CardGrid } from "./card-grid";
+import { Banner } from "./banner";
 import { getCardsForRegion } from "@/lib/cards";
 import { Region } from "@/types/regions";
 import { normalizeRegion } from "@/lib/region-utils";
@@ -100,7 +101,12 @@ export function RegionClientWrapper({
 
       {children}
 
-      {showCards && <CardGrid cards={cards} region={currentRegion} />}
+      {showCards && (
+        <>
+          <CardGrid cards={cards} region={currentRegion} />
+          <Banner />
+        </>
+      )}
     </div>
   );
 }
