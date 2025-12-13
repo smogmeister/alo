@@ -94,7 +94,7 @@ export function ProfileHeader({ profile, region }: ProfileHeaderProps) {
                     })
                   }
                 >
-                  <FontAwesomeIcon icon={iconDef} className="h-5 w-5 text-primary" />
+                  <FontAwesomeIcon icon={iconDef} className="h-5 w-5 text-foreground" />
                   <span className="sr-only">{link.platform}</span>
                 </Link>
               </Button>
@@ -108,7 +108,7 @@ export function ProfileHeader({ profile, region }: ProfileHeaderProps) {
             className="h-10 w-10"
           >
             <Link href="mailto:jan@cradon.com">
-              <Mail className="h-5 w-5 text-primary" />
+              <Mail className="h-5 w-5 text-foreground" />
               <span className="sr-only">email</span>
             </Link>
           </Button>
