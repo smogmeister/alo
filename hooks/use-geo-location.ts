@@ -12,9 +12,9 @@ const EUROPEAN_COUNTRIES = [
   "SE", "NO", "DK", "FI", "PT", "IE", "CZ", "GR", "HU", "RO"
 ];
 
-interface IpApiResponse {
-  status: string;
-  countryCode: string;
+interface IpWhoIsResponse {
+  success: boolean;
+  country_code: string;
 }
 
 function mapCountryCodeToTab(countryCode: string): CountryCode {
@@ -47,12 +47,14 @@ export function useGeoLocation() {
 
     async function detectCountry() {
       try {
-        const response = await fetch("http://ip-api.com/json/?fields=status,countryCode");
-        const data: IpApiResponse = await response.json();
+        // Using ipwhois.app - free HTTPS API with no key required
+        const response = await fetch("https://ipwho.is/?fields=success,country_code");
+        const data: IpWhoIsResponse = await response.json();
         
-        if (data.status === "success") {
-          const mappedCountry = mapCountryCodeToTab(data.countryCode);
+        if (data.success) {
+          const mappedCountry = mapCountryCodeToTab(data.country_code);
           setCountry(mappedCountry);
+          console.log(`IP detected country: ${data.country_code} -> ${mappedCountry}`);
         }
       } catch (error) {
         // On error, default to USA (already set)
