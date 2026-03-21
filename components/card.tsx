@@ -5,17 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { Card as UICard } from "@/components/ui/card";
-import { Card as CardType } from "@/types/cards";
+import { Card as CardType, CountryCode } from "@/types/cards";
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 interface CardProps {
   card: CardType;
+  country: CountryCode;
 }
 
-export function Card({ card }: CardProps) {
+export function Card({ card, country }: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
+
+  const link = card.links[country];
 
   const handleClick = () => {
     trackEvent({
@@ -24,13 +27,19 @@ export function Card({ card }: CardProps) {
       label: card.title,
       card_id: card.id,
       card_title: card.title,
-      url: card.link,
+      url: link || "",
+      country: country,
     });
   };
 
+  // Don't render if no link for this country
+  if (!link) {
+    return null;
+  }
+
   return (
     <Link
-      href={card.link}
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
