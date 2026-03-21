@@ -1,5 +1,4 @@
-import { CardsData, Card, RegionCardContent } from "@/types/cards";
-import { Region } from "@/types/regions";
+import { CardsData, Card } from "@/types/cards";
 import cardsData from "@/data/cards.json";
 
 /**
@@ -10,37 +9,19 @@ export function loadCardsData(): CardsData {
 }
 
 /**
- * Gets cards sorted by priority for a specific region
+ * Gets all cards sorted by priority
  */
-export function getCardsForRegion(region: Region): Array<{
-  id: string;
-  priority: number;
-  content: RegionCardContent;
-}> {
+export function getCards(): Card[] {
   const data = loadCardsData();
-  const cards = data.cards
-    .map((card) => ({
-      id: card.id,
-      priority: card.priority,
-      content: card.regions[region],
-    }))
-    .filter((card) => card.content) // Filter out cards without content for this region
-    .sort((a, b) => a.priority - b.priority); // Sort by priority ascending
-
-  return cards;
+  return data.cards.sort((a, b) => a.priority - b.priority);
 }
 
 /**
- * Gets a specific card's content for a region
+ * Gets a specific card by ID
  */
-export function getCardContent(
-  cardId: string,
-  region: Region
-): RegionCardContent | null {
+export function getCard(cardId: string): Card | null {
   const data = loadCardsData();
-  const card = data.cards.find((c) => c.id === cardId);
-  if (!card) return null;
-  return card.regions[region] || null;
+  return data.cards.find((c) => c.id === cardId) || null;
 }
 
 

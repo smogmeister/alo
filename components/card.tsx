@@ -5,17 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { Card as UICard } from "@/components/ui/card";
-import { RegionCardContent } from "@/types/cards";
+import { Card as CardType } from "@/types/cards";
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 interface CardProps {
-  content: RegionCardContent;
-  id: string;
-  region?: string;
+  card: CardType;
 }
 
-export function Card({ content, id, region }: CardProps) {
+export function Card({ card }: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
@@ -23,24 +21,23 @@ export function Card({ content, id, region }: CardProps) {
     trackEvent({
       action: "card_click",
       category: "engagement",
-      label: content.title,
-      card_id: id,
-      card_title: content.title,
-      region,
-      url: content.link,
+      label: card.title,
+      card_id: card.id,
+      card_title: card.title,
+      url: card.link,
     });
   };
 
   return (
     <Link
-      href={content.link}
+      href={card.link}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
     >
       <UICard className="group overflow-hidden transition-transform card-elevated hover:scale-[1.01] cursor-pointer h-full flex flex-col">
         <div className="relative aspect-square w-full overflow-hidden bg-white border-b border-border">
-          {id === "card-1" && (
+          {card.id === "card-1" && (
             <div className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-primary/90 text-primary-foreground border border-primary px-2 py-0.5 text-[10px] font-medium shadow-sm">
               <Star className="h-3 w-3 text-primary-foreground" />
               <span>Favourite</span>
@@ -52,8 +49,8 @@ export function Card({ content, id, region }: CardProps) {
                 <div className="absolute inset-0 bg-muted animate-pulse" />
               )}
               <Image
-                src={content.image}
-                alt={content.title}
+                src={card.image}
+                alt={card.title}
                 fill
                 className={`object-cover transition-opacity duration-300 ${
                   imageLoading ? "opacity-0" : "opacity-100"
@@ -74,7 +71,7 @@ export function Card({ content, id, region }: CardProps) {
         </div>
         <div className="p-4 flex-1 flex items-center">
           <h3 className="font-sans font-semibold text-xs line-clamp-2 md:text-base">
-            {content.title}
+            {card.title}
           </h3>
         </div>
       </UICard>

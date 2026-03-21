@@ -22,8 +22,6 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useRegion } from "@/components/region-client-wrapper";
-import type { Region } from "@/types/regions";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
 const COOKIE_PREFERENCES_KEY = "cookie-preferences";
@@ -42,11 +40,7 @@ const DEFAULT_PREFERENCES: CookiePreferences = {
   marketing: false,
 };
 
-// European countries that require GDPR cookie consent
-const EUROPEAN_COUNTRIES: Region[] = ["UK", "Germany", "France"];
-
 export function CookieBanner() {
-  const { currentRegion } = useRegion();
   const [isVisible, setIsVisible] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(DEFAULT_PREFERENCES);
@@ -55,11 +49,6 @@ export function CookieBanner() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
-    // Only show banner for European countries
-    if (!EUROPEAN_COUNTRIES.includes(currentRegion)) {
-      return;
-    }
     
     try {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
@@ -76,7 +65,7 @@ export function CookieBanner() {
     } catch (error) {
       console.error("Error checking cookie consent:", error);
     }
-  }, [currentRegion]);
+  }, []);
 
   const savePreferences = (newPreferences: CookiePreferences) => {
     if (typeof window === "undefined") return;
