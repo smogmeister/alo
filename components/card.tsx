@@ -41,8 +41,10 @@ export function Card({ card, country }: CardProps) {
     <Link
       href={link}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer sponsored"
       onClick={handleClick}
+      aria-label={`View ${card.title} on Amazon`}
+      title={card.title}
     >
       <UICard className="group overflow-hidden transition-transform card-elevated hover:scale-[1.01] cursor-pointer h-full flex flex-col">
         <div className="relative aspect-square w-full overflow-hidden bg-white border-b border-border">
@@ -59,7 +61,7 @@ export function Card({ card, country }: CardProps) {
               )}
               <Image
                 src={card.image}
-                alt={card.title}
+                alt={`${card.title} - Recommended by Smog`}
                 fill
                 className={`object-cover transition-opacity duration-300 ${
                   imageLoading ? "opacity-0" : "opacity-100"
@@ -70,6 +72,7 @@ export function Card({ card, country }: CardProps) {
                   setImageLoading(false);
                 }}
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                loading="lazy"
               />
             </>
           ) : (

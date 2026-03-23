@@ -44,15 +44,17 @@ export function CardGrid({ cards }: CardGridProps) {
   return (
     <div className="space-y-4">
       <CountrySelect />
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+      <ul
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 list-none p-0 m-0"
+        role="list"
+        aria-label="Product recommendations list"
+      >
         {filteredCards.map((card) => (
-          <CardComponent
-            key={card.id}
-            card={card}
-            country={country}
-          />
+          <li key={card.id}>
+            <CardComponent card={card} country={country} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

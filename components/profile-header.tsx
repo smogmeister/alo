@@ -19,15 +19,19 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
   };
 
   return (
-    <div className="flex justify-center pb-4 md:pb-8 pt-2 px-4 content-center items-center">
+    <div
+      className="flex justify-center pb-4 md:pb-8 pt-2 px-4 content-center items-center"
+      itemScope
+      itemType="https://schema.org/Person"
+    >
       <div className="flex flex-col gap-6 w-full max-w-xl items-center">
-        {/* Top row: image + name/description inline */}
         <div className="flex items-center gap-4 md:gap-6">
           <Avatar className="h-16 w-16 md:h-20 md:w-20 border border-3 border-border shadow-sm flex-shrink-0">
             <AvatarImage
               src={profile.image}
-              alt={profile.name}
+              alt={`${profile.name} - Interior design creator and product reviewer`}
               className="object-cover"
+              itemProp="image"
             />
             <AvatarFallback className="text-2xl">
               {getInitials(profile.name)}
@@ -35,8 +39,16 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
           </Avatar>
 
           <div className="flex flex-col items-start text-left gap-1">
-            <h1 className="text-xl md:text-2xl font-bold">{profile.name}</h1>
-            <p className="text-muted-foreground text-xs md:text-sm max-w-[172px] md:max-w-[278px]">
+            <h1
+              className="text-xl md:text-2xl font-bold"
+              itemProp="name"
+            >
+              {profile.name}
+            </h1>
+            <p
+              className="text-muted-foreground text-xs md:text-sm max-w-[172px] md:max-w-[278px]"
+              itemProp="description"
+            >
               {profile.description}
             </p>
           </div>
