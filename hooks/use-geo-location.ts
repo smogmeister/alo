@@ -8,8 +8,11 @@ const SESSION_STORAGE_KEY = "selected-country";
 
 // European country codes that map to Germany tab
 const EUROPEAN_COUNTRIES = [
-  "DE", "AT", "CH", "FR", "IT", "ES", "NL", "BE", "PL", 
-  "SE", "NO", "DK", "FI", "PT", "IE", "CZ", "GR", "HU", "RO"
+  "AD", "AL", "AT", "BA", "BE", "BG", "BY", "CH", "CY", "CZ",
+  "DE", "DK", "EE", "ES", "FI", "FO", "FR", "GB", "GG", "GI",
+  "GR", "HR", "HU", "IE", "IM", "IS", "IT", "JE", "LI", "LT",
+  "LU", "LV", "MC", "MD", "ME", "MK", "MT", "NL", "NO", "PL",
+  "PT", "RO", "RS", "SE", "SI", "SK", "SM", "UA", "VA", "XK",
 ];
 
 interface IpWhoIsResponse {
@@ -18,15 +21,18 @@ interface IpWhoIsResponse {
 }
 
 function mapCountryCodeToTab(countryCode: string): CountryCode {
-  switch (countryCode) {
+  const normalizedCountryCode = countryCode.trim().toUpperCase();
+
+  switch (normalizedCountryCode) {
     case "US":
       return "usa";
     case "CA":
       return "canada";
     case "GB":
+    case "UK":
       return "uk";
     default:
-      if (EUROPEAN_COUNTRIES.includes(countryCode)) {
+      if (EUROPEAN_COUNTRIES.includes(normalizedCountryCode)) {
         return "germany";
       }
       // Default to USA for all other countries
