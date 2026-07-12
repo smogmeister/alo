@@ -4,7 +4,6 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
-import { Card as UICard } from "@/components/ui/card";
 import { Card as CardType, CountryCode } from "@/types/cards";
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
@@ -45,11 +44,12 @@ export function Card({ card, country }: CardProps) {
       onClick={handleClick}
       aria-label={`View ${card.title} on Amazon`}
       title={card.title}
+      className="group block mb-3"
     >
-      <UICard className="group overflow-hidden transition-transform card-elevated hover:scale-[1.01] cursor-pointer h-full flex flex-col">
-        <div className="relative aspect-square w-full overflow-hidden bg-white border-b border-border">
+      <div className="cursor-pointer h-full flex flex-col gap-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-white">
           {card.id === "card-1" && (
-            <div className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-primary/90 text-primary-foreground border border-primary px-2 py-0.5 text-[10px] font-medium shadow-sm">
+            <div className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-primary/90 text-primary-foreground border border-primary px-2 py-0.5 text-[10px] font-medium">
               <Star className="h-3 w-3 text-primary-foreground" />
               <span>Favourite</span>
             </div>
@@ -57,13 +57,13 @@ export function Card({ card, country }: CardProps) {
           {!imageError ? (
             <>
               {imageLoading && (
-                <div className="absolute inset-0 bg-muted animate-pulse" />
+                <div className="absolute inset-0 bg-muted animate-pulse rounded-lg" />
               )}
               <Image
                 src={card.image}
                 alt={`${card.title} - Recommended by Smog`}
                 fill
-                className={`object-cover transition-opacity duration-300 ${
+                className={`object-cover rounded-lg ${
                   imageLoading ? "opacity-0" : "opacity-100"
                 }`}
                 onLoad={() => setImageLoading(false)}
@@ -76,17 +76,15 @@ export function Card({ card, country }: CardProps) {
               />
             </>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+            <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground rounded-lg">
               <span className="text-sm">Image unavailable</span>
             </div>
           )}
         </div>
-        <div className="p-4 flex-1 flex items-center">
-          <h3 className="font-sans font-semibold text-xs line-clamp-2 md:text-base">
-            {card.title}
-          </h3>
-        </div>
-      </UICard>
+        <h3 className="font-sans font-semibold text-[16px] leading-snug line-clamp-2 text-left pl-1 group-hover:underline">
+          {card.title}
+        </h3>
+      </div>
     </Link>
   );
 }
