@@ -71,6 +71,42 @@
         "germany": "https://amzn.to/4hmBur1",
         "uk": "https://amzn.to/4wNu5Wf"
       }
+    },
+    {
+      "id": "card-7",
+      "priority": 7,
+      "title": "Steam cleaner ",
+      "image": "https://m.media-amazon.com/images/I/611nJVMCthL._AC_SL1500_.jpg",
+      "links": {
+        "usa": "https://amzn.to/4bG35zi",
+        "canada": "https://amzn.to/4vuOKxk",
+        "germany": "https://amzn.to/44up7Si",
+        "uk": "https://amzn.to/4aJc2YY"
+      }
+    },
+    {
+      "id": "card-8",
+      "priority": 8,
+      "title": "Window vac ",
+      "image": "https://m.media-amazon.com/images/I/61MhXzyU72L._AC_SL1500_.jpg",
+      "links": {
+        "usa": "https://amzn.to/3NI3B7E",
+        "canada": "https://amzn.to/4voshSE",
+        "germany": "https://amzn.to/4fafMUr",
+        "uk": "https://amzn.to/4eX6MTZ"
+      }
+    },
+    {
+      "id": "card-9",
+      "priority": 10,
+      "title": "Electric brush ",
+      "image": "https://m.media-amazon.com/images/I/815GvV+L03L._AC_SL1500_.jpg",
+      "links": {
+        "usa": "https://amzn.to/3Nvsfsj",
+        "canada": "https://amzn.to/4gEBHpv",
+        "germany": "https://amzn.to/4voX81e",
+        "uk": "https://amzn.to/4wHPKiM"
+      }
     }
   ]
 }
