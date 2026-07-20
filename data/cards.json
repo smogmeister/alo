@@ -3,18 +3,18 @@
     {
       "id": "card-1",
       "priority": 1,
-      "title": "Pink stuff cleaning spray",
-      "image": "https://m.media-amazon.com/images/I/81OOj2tbgHL._AC_SL1500_.jpg",
+      "title": "PC case",
+      "image": "https://m.media-amazon.com/images/I/81bgpOzP9VL._AC_SL1500_.jpg",
       "links": {
-        "usa": "https://amzn.to/4uEtXIF",
-        "canada": "https://amzn.to/4508nT4",
-        "germany": "https://amzn.to/4vqUTuA",
-        "uk": "https://amzn.to/4wDQR2H"
+        "usa": "https://amzn.to/4ynFtK6",
+        "canada": "https://amzn.to/4b1akSN",
+        "germany": "https://amzn.to/4fvVGEF",
+        "uk": "https://amzn.to/4fpdRLQ"
       }
     },
     {
       "id": "card-2",
-      "priority": 2,
+      "priority": 3,
       "title": "Vacuum cleaner",
       "image": "https://m.media-amazon.com/images/I/6122QSTrLOL._AC_SL1500_.jpg",
       "links": {
@@ -26,14 +26,14 @@
     },
     {
       "id": "card-3",
-      "priority": 3,
-      "title": "Microfibre cloths",
-      "image": "https://m.media-amazon.com/images/I/81Fcz9Q4NpL._AC_SL1500_.jpg",
+      "priority": 2,
+      "title": "PC mouse",
+      "image": "https://m.media-amazon.com/images/I/51ySu55JzAL._AC_SL1500_.jpg",
       "links": {
-        "usa": "https://amzn.to/3NDUdSG",
-        "canada": "https://amzn.to/3TfdzzQ",
-        "germany": "https://amzn.to/3SMksst",
-        "uk": "https://amzn.to/4fgDXkh"
+        "usa": "https://amzn.to/44E5TKc",
+        "canada": "https://amzn.to/4ysSKBa",
+        "germany": "https://amzn.to/3RjrEvK",
+        "uk": "https://amzn.to/4yxCy1o"
       }
     },
     {
@@ -51,73 +51,25 @@
     {
       "id": "card-5",
       "priority": 5,
-      "title": "Eucalyptus stems for shower",
-      "image": "https://m.media-amazon.com/images/I/81DQ2SNrwNL._AC_SL1500_.jpg",
+      "title": "Venator",
+      "image": "https://m.media-amazon.com/images/I/71sNxmGzvlL._AC_SL1500_.jpg",
       "links": {
-        "usa": "https://amzn.to/47a4MDG",
-        "canada": "https://amzn.to/4wDRgSL",
-        "germany": "https://amzn.to/4fcdd4r",
-        "uk": "https://amzn.to/4wC9uEj"
+        "usa": "https://amzn.to/4wYyaap",
+        "canada": "https://amzn.to/3TaYejT",
+        "germany": "https://amzn.to/4yDAW6D",
+        "uk": "https://amzn.to/4wf83Ms"
       }
     },
     {
       "id": "card-6",
       "priority": 6,
-      "title": "Toilet foam",
-      "image": "https://m.media-amazon.com/images/I/81wZOA-zTBL._AC_SL1500_.jpg",
+      "title": "Study device",
+      "image": "https://m.media-amazon.com/images/I/61goypdjAYL._AC_SL1500_.jpg",
       "links": {
-        "usa": "https://amzn.to/481KJrc",
-        "canada": "https://amzn.to/4w1z2eh",
-        "germany": "https://amzn.to/44qzAhy",
-        "uk": "https://amzn.to/4w03pl6"
-      }
-    },
-    {
-      "id": "card-7",
-      "priority": 7,
-      "title": "Steam cleaner ",
-      "image": "https://m.media-amazon.com/images/I/611nJVMCthL._AC_SL1500_.jpg",
-      "links": {
-        "usa": "https://amzn.to/4bG35zi",
-        "canada": "https://amzn.to/4vuOKxk",
-        "germany": "https://amzn.to/44up7Si",
-        "uk": "https://amzn.to/4aJc2YY"
-      }
-    },
-    {
-      "id": "card-8",
-      "priority": 8,
-      "title": "Window vac ",
-      "image": "https://m.media-amazon.com/images/I/61MhXzyU72L._AC_SL1500_.jpg",
-      "links": {
-        "usa": "https://amzn.to/3NI3B7E",
-        "canada": "https://amzn.to/4voshSE",
-        "germany": "https://amzn.to/4fafMUr",
-        "uk": "https://amzn.to/4eX6MTZ"
-      }
-    },
-    {
-      "id": "card-9",
-      "priority": 9,
-      "title": "Mop ",
-      "image": "https://m.media-amazon.com/images/I/819wSV5AEEL._AC_SL1500_.jpg",
-      "links": {
-        "usa": "https://amzn.to/3PQlthk",
-        "canada": "https://amzn.to/4vmihcF",
-        "germany": "https://amzn.to/44Y7UAR",
-        "uk": "https://amzn.to/4ygroy3"
-      }
-    },
-    {
-      "id": "card-10",
-      "priority": 10,
-      "title": "Electric brush ",
-      "image": "https://m.media-amazon.com/images/I/815GvV+L03L._AC_SL1500_.jpg",
-      "links": {
-        "usa": "https://amzn.to/3Nvsfsj",
-        "canada": "https://amzn.to/4gEBHpv",
-        "germany": "https://amzn.to/4voX81e",
-        "uk": "https://amzn.to/4wHPKiM"
+        "usa": "https://amzn.to/4vyFTut",
+        "canada": "https://amzn.to/4fbXIuz",
+        "germany": "https://amzn.to/4hmBur1",
+        "uk": "https://amzn.to/4wNu5Wf"
       }
     }
   ]
