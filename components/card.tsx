@@ -57,13 +57,13 @@ export function Card({ card, country }: CardProps) {
           {!imageError ? (
             <>
               {imageLoading && (
-                <div className="absolute inset-0 bg-muted animate-pulse rounded-lg" />
+                <div className="absolute inset-0 bg-muted animate-pulse rounded-sm" />
               )}
               <Image
                 src={card.image}
                 alt={`${card.title} - Recommended by Smog`}
                 fill
-                className={`object-cover rounded-lg ${
+                className={`object-contain rounded-lg ${
                   imageLoading ? "opacity-0" : "opacity-100"
                 }`}
                 onLoad={() => setImageLoading(false)}
