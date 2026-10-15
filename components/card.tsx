@@ -4,20 +4,19 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
-import { Card as CardType, CountryCode } from "@/types/cards";
+import { Card as CardType } from "@/types/cards";
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 interface CardProps {
   card: CardType;
-  country: CountryCode;
 }
 
-export function Card({ card, country }: CardProps) {
+export function Card({ card }: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
-  const link = card.links[country];
+  const link = card.links.usa;
 
   const handleClick = () => {
     trackEvent({
@@ -27,7 +26,7 @@ export function Card({ card, country }: CardProps) {
       card_id: card.id,
       card_title: card.title,
       url: link || "",
-      country: country,
+      country: "usa",
     });
   };
 
@@ -81,7 +80,7 @@ export function Card({ card, country }: CardProps) {
             </div>
           )}
         </div>
-        <h3 className="font-sans font-semibold text-[16px] leading-snug line-clamp-2 text-left pl-1 group-hover:underline">
+        <h3 className="font-sans font-semibold text-[16px] leading-snug line-clamp-2 text-left pl-2 group-hover:underline">
           {card.title}
         </h3>
       </div>

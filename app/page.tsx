@@ -2,7 +2,6 @@ import { ProfileHeader } from "@/components/profile-header";
 import { Footer } from "@/components/footer";
 import { CookieBanner } from "@/components/cookie-banner";
 import { CardGrid } from "@/components/card-grid";
-import { CountryProviderWrapper } from "@/components/country-provider-wrapper";
 import { loadProfile } from "@/lib/profile";
 import { getCards } from "@/lib/cards";
 
@@ -23,9 +22,7 @@ export default function Home() {
           </header>
           <section aria-label="Product recommendations">
             <h2 className="sr-only">Recommended Cleaning and Interior Design Products</h2>
-            <CountryProviderWrapper>
-              <CardGrid cards={cards} />
-            </CountryProviderWrapper>
+            <CardGrid cards={cards} />
           </section>
         </article>
       </main>
