@@ -43,7 +43,7 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
       {/* Toggle sits beside the name without pulling it off-center */}
       <div className="relative mt-6">
         <h1
-          className="text-[32px] font-semibold leading-none tracking-[-0.02em]"
+          className="text-[32px] font-medium leading-none tracking-[-0.01em]"
           itemProp="name"
         >
           {profile.name}
@@ -73,7 +73,7 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
               aria-label={`Business inquiries: email ${profile.email}`}
               className="inline-flex min-h-11 items-center gap-1.5 rounded-sm px-1 text-sm text-muted-foreground transition-colors duration-150 ease-quiet hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
-              <Mail className="h-4 w-4" aria-hidden="true" />
+              <Mail className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
               Business inquiries
             </a>
           </>

@@ -32,16 +32,16 @@ export function CookieBanner() {
         <div
           role="region"
           aria-label="Cookie consent"
-          className="animate-quiet-enter fixed inset-x-3 bottom-3 z-50 rounded-2xl border border-border bg-card p-4 sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[340px]"
+          className="animate-quiet-enter fixed inset-x-3 bottom-3 z-50 rounded-[20px] border border-border bg-card p-3 sm:inset-x-auto sm:right-5 sm:bottom-5 sm:w-[340px]"
         >
           <div className="flex items-start justify-between gap-3">
-            <p className="text-xs leading-relaxed text-muted-foreground">
+            <p className="pt-1 pl-1 text-xs leading-relaxed text-muted-foreground">
               This site uses cookies for analytics and affiliate tracking.{" "}
               <a
                 href="https://beautified.app/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="-my-3 inline-block min-w-11 py-3 text-center underline underline-offset-2 transition-colors hover:text-foreground"
+                className="-my-3 inline-block min-h-11 min-w-11 py-3 text-center underline underline-offset-2 transition-colors hover:text-foreground"
               >
                 Privacy
               </a>
@@ -50,9 +50,9 @@ export function CookieBanner() {
               type="button"
               onClick={() => decide(false)}
               aria-label="Decline and close"
-              className="-mt-3 -mr-3 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="-mt-2 -mr-2 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <X className="h-3.5 w-3.5" aria-hidden="true" />
+              <X className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
             </button>
           </div>
           <div className="mt-3 flex items-center gap-2">

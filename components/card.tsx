@@ -91,7 +91,7 @@ export function Card({ card, index = 0, variant = "default" }: CardProps) {
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-            <ImageOff className="h-5 w-5" aria-hidden="true" />
+            <ImageOff className="h-[18px] w-[18px]" strokeWidth={1.5} aria-hidden="true" />
             <span className="sr-only">Image unavailable</span>
           </div>
         )}
@@ -115,8 +115,8 @@ export function Card({ card, index = 0, variant = "default" }: CardProps) {
         className={cn(
           "font-medium text-balance",
           isHero
-            ? "mt-1 text-[19px] leading-snug tracking-[-0.015em]"
-            : "mt-1 line-clamp-2 min-h-[2.7em] text-[15px] leading-[1.35] tracking-[-0.01em]"
+            ? "mt-1 text-xl leading-snug tracking-normal"
+            : "mt-1 line-clamp-2 min-h-[2.7em] text-[15px] leading-[1.35] tracking-normal"
         )}
       >
         {title}

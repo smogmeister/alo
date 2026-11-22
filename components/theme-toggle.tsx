@@ -16,7 +16,7 @@ const META: Record<ThemeChoice, { icon: typeof Sun; label: string }> = {
 
 const noopSubscribe = () => () => {};
 
-/** Cycles System → Light → Dark. Crossfades via the View Transitions API when available. */
+/** Cycles System → Light → Dark. System (follow the OS) is the default. */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
   // false during SSR/hydration, true afterwards (theme is only known on the client)
@@ -28,31 +28,19 @@ export function ThemeToggle({ className }: { className?: string }) {
   const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
   const Icon = META[current].icon;
 
-  const handleClick = () => {
-    const apply = () => setTheme(next);
-    const doc = document as Document & {
-      startViewTransition?: (cb: () => void) => unknown;
-    };
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (doc.startViewTransition && !reduce) doc.startViewTransition(apply);
-    else apply();
-  };
-
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={() => setTheme(next)}
       aria-label={`Theme: ${META[current].label}. Switch to ${META[next].label}`}
       className={cn(
-        "group/toggle inline-flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-quiet hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "inline-flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-quiet hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         className
       )}
     >
       <Icon
-        className={cn(
-          "h-4 w-4 transition-[transform,opacity] duration-300 ease-quiet group-hover/toggle:rotate-[15deg]",
-          !mounted && "opacity-0"
-        )}
+        className={cn("h-[18px] w-[18px]", !mounted && "opacity-0")}
+        strokeWidth={1.5}
         aria-hidden="true"
       />
     </button>

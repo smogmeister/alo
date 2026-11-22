@@ -188,13 +188,6 @@
       animation-range: entry 0% entry 60%;
     }
   }
-
-  /* Theme switch crossfade (View Transitions API, see theme-toggle.tsx) */
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 220ms;
-    animation-timing-function: var(--ease);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -51,7 +51,7 @@ export function SocialLinks({ links, name }: { links: SocialLink[]; name: string
             >
               <BrandIcon
                 icon={meta.icon}
-                className="h-5 w-5 transition-transform duration-300 ease-quiet group-hover/icon:scale-[1.08]"
+                className="h-[18px] w-[18px] transition-transform duration-300 ease-quiet group-hover/icon:scale-[1.08]"
               />
             </a>
           </li>
