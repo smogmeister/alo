@@ -6,31 +6,38 @@ interface CardGridProps {
 }
 
 export function CardGrid({ cards }: CardGridProps) {
-  const filteredCards = cards.filter((card) => card.links.usa);
+  const available = cards.filter((card) => card.links.usa);
 
-  if (filteredCards.length === 0) {
+  if (available.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed py-16 text-center text-muted-foreground">
+      <div className="rounded-2xl border border-dashed py-16 text-center text-sm text-muted-foreground">
         <p>No products available right now. Check back soon.</p>
       </div>
     );
   }
 
+  // The first featured card becomes the hero tile at the top of the grid.
+  const heroIndex = available.findIndex((card) => card.featured);
+  const ordered =
+    heroIndex > 0
+      ? [available[heroIndex], ...available.filter((_, i) => i !== heroIndex)]
+      : available;
+  const hasHero = heroIndex !== -1;
+
   return (
     <ul
-      className="m-0 grid list-none grid-cols-2 gap-3 p-0 md:grid-cols-3 md:gap-5 lg:grid-cols-4"
+      className="m-0 grid list-none grid-cols-2 gap-x-3 gap-y-6 p-0 md:grid-cols-3 md:gap-x-5 md:gap-y-8 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10"
       role="list"
       aria-label="Product recommendations list"
     >
-      {filteredCards.map((card, index) => (
-        <li
-          key={card.id}
-          className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both motion-reduce:animate-none"
-          style={{ animationDelay: `${150 + index * 60}ms` }}
-        >
-          <CardComponent card={card} index={index} />
-        </li>
-      ))}
+      {ordered.map((card, index) => {
+        const isHero = hasHero && index === 0;
+        return (
+          <li key={card.id} className={isHero ? "reveal col-span-2 md:row-span-2" : "reveal"}>
+            <CardComponent card={card} index={index} variant={isHero ? "hero" : "default"} />
+          </li>
+        );
+      })}
     </ul>
   );
 }

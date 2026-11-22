@@ -7,6 +7,8 @@ export interface SocialLink {
 
 export interface Profile {
   name: string;
+  /** Optional one-line subtitle under the name */
+  tagline?: string;
   description: string;
   /** Business contact; rendered as a mailto button */
   email?: string;

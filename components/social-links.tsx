@@ -34,7 +34,7 @@ export function SocialLinks({ links, name }: { links: SocialLink[]; name: string
   if (links.length === 0) return null;
 
   return (
-    <ul className="flex items-center justify-center gap-2.5" aria-label="Social media">
+    <ul className="flex items-center gap-1" aria-label="Social media">
       {links.map(({ platform, url }) => {
         const meta = PLATFORMS[platform];
         if (!meta) return null;
@@ -47,9 +47,12 @@ export function SocialLinks({ links, name }: { links: SocialLink[]; name: string
               itemProp="sameAs"
               aria-label={`${name} on ${meta.label}`}
               title={meta.label}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-card text-foreground ring-1 ring-border transition-all duration-200 hover:-translate-y-0.5 hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              className="group/icon flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-colors duration-150 ease-quiet hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <BrandIcon icon={meta.icon} className="h-[18px] w-[18px]" />
+              <BrandIcon
+                icon={meta.icon}
+                className="h-5 w-5 transition-transform duration-300 ease-quiet group-hover/icon:scale-[1.08]"
+              />
             </a>
           </li>
         );

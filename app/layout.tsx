@@ -1,7 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://smogmeister.com";
 const siteName = "Smog";
@@ -106,7 +114,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf6f0",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#121211" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -171,7 +182,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={geist.variable} suppressHydrationWarning>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RY7BWXYRMZ"
@@ -185,12 +196,6 @@ export default function RootLayout({
             gtag('config', 'G-RY7BWXYRMZ');
           `}
         </Script>
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=plus-jakarta-sans@400,500,600,700&f[]=zodiak@400,700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -198,7 +203,14 @@ export default function RootLayout({
       </head>
       {/* Browser extensions (e.g. ColorZilla) inject attributes on <body> before hydration */}
       <body className="antialiased" suppressHydrationWarning>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -1,10 +1,9 @@
 "use client";
 
-import * as React from "react";
 import Image from "next/image";
-import { ArrowUpRight, ImageOff, Star } from "lucide-react";
-import { Card as CardType } from "@/types/cards";
 import { useState } from "react";
+import { ImageOff } from "lucide-react";
+import { Card as CardType } from "@/types/cards";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -12,16 +11,21 @@ interface CardProps {
   card: CardType;
   /** Position in the grid; the first row loads eagerly for a faster LCP. */
   index?: number;
+  variant?: "default" | "hero";
 }
 
-const EAGER_COUNT = 4;
+const EAGER_COUNT = 5;
 
-export function Card({ card, index = 0 }: CardProps) {
+export function Card({ card, index = 0, variant = "default" }: CardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
   const link = card.links.usa;
   const title = card.title.trim();
+  const isHero = variant === "hero";
+  const displayIndex = String(index + 1).padStart(2, "0");
+
+  if (!link) return null;
 
   const handleClick = () => {
     trackEvent({
@@ -30,15 +34,10 @@ export function Card({ card, index = 0 }: CardProps) {
       label: title,
       card_id: card.id,
       card_title: title,
-      url: link || "",
+      url: link,
       country: "usa",
     });
   };
-
-  // Don't render if no link for this country
-  if (!link) {
-    return null;
-  }
 
   return (
     <a
@@ -47,27 +46,33 @@ export function Card({ card, index = 0 }: CardProps) {
       rel="noopener noreferrer sponsored"
       onClick={handleClick}
       aria-label={`${title}: view on Amazon (opens in a new tab)`}
-      className="group flex h-full flex-col rounded-2xl bg-card p-1.5 ring-1 ring-border transition-all duration-300 ease-out hover:-translate-y-1 hover:ring-[oklch(0.82_0.04_55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:p-2"
+      className="group flex h-full flex-col focus-visible:outline-none"
     >
-      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
-        {card.featured && (
-          <div className="absolute left-2 top-2 z-10 inline-flex items-center gap-1 rounded-full bg-foreground px-2.5 py-1 text-[11px] font-semibold text-background">
-            <Star className="h-3 w-3 fill-current text-[oklch(0.85_0.12_75)]" aria-hidden="true" />
-            <span>Favourite</span>
-          </div>
+      {/* Image well */}
+      <div
+        className={cn(
+          "relative w-full overflow-hidden rounded-2xl bg-well",
+          "[transition:background-color_var(--dur-base)_var(--ease),scale_120ms_var(--ease)]",
+          "group-hover:bg-well-hover group-active:scale-[0.99]",
+          "outline-offset-[3px] group-focus-visible:outline-2 group-focus-visible:outline-solid group-focus-visible:outline-ring",
+          "after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit] after:ring-1 after:ring-inset after:ring-hairline",
+          isHero ? "aspect-[4/3] md:aspect-auto md:min-h-0 md:flex-1" : "aspect-[4/5]"
         )}
-
+      >
         {!imageError ? (
           <>
             {imageLoading && (
-              <div className="absolute inset-0 animate-pulse bg-muted" aria-hidden="true" />
+              <div className="animate-shimmer absolute inset-0" aria-hidden="true" />
             )}
             <Image
               src={card.image}
               alt={`${title} - Recommended by Smog`}
               fill
+              quality={90}
               className={cn(
-                "object-contain p-3 transition-[opacity,transform] duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100 md:p-4",
+                "object-contain mix-blend-multiply",
+                isHero ? "p-[10%]" : "p-[12%]",
+                "[transition:opacity_var(--dur-base)_var(--ease),scale_var(--dur-base)_var(--ease)] group-hover:scale-[1.025]",
                 imageLoading ? "opacity-0" : "opacity-100"
               )}
               onLoad={() => setImageLoading(false)}
@@ -75,33 +80,47 @@ export function Card({ card, index = 0 }: CardProps) {
                 setImageError(true);
                 setImageLoading(false);
               }}
-              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 280px"
+              sizes={
+                isHero
+                  ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 520px"
+                  : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 250px"
+              }
               loading={index < EAGER_COUNT ? "eager" : "lazy"}
               fetchPriority={index < 2 ? "high" : undefined}
             />
           </>
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-muted text-muted-foreground">
-            <ImageOff className="h-6 w-6" aria-hidden="true" />
-            <span className="text-xs">Image unavailable</span>
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+            <ImageOff className="h-5 w-5" aria-hidden="true" />
+            <span className="sr-only">Image unavailable</span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-1 items-end justify-between gap-2 px-1.5 pb-1.5 pt-3 md:px-2">
-        <div className="min-w-0">
-          <h3 className="line-clamp-2 font-sans text-[15px] font-semibold leading-snug md:text-base">
-            {title}
-          </h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">View on Amazon</p>
-        </div>
+      {/* Meta row */}
+      <div className="mt-3 flex items-center justify-between text-xs tabular-nums text-muted-foreground">
+        <span>{displayIndex}</span>
         <span
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground"
+          className="opacity-0 transition-opacity duration-300 ease-quiet group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100"
           aria-hidden="true"
         >
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px" />
+          Amazon{" "}
+          <span className="inline-block transition-transform duration-300 ease-quiet group-hover:translate-x-px group-hover:-translate-y-px">
+            ↗
+          </span>
         </span>
       </div>
+
+      <h3
+        className={cn(
+          "font-medium text-balance",
+          isHero
+            ? "mt-1 text-[19px] leading-snug tracking-[-0.015em]"
+            : "mt-1 line-clamp-2 min-h-[2.7em] text-[15px] leading-[1.35] tracking-[-0.01em]"
+        )}
+      >
+        {title}
+      </h3>
     </a>
   );
 }

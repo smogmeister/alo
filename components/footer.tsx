@@ -1,38 +1,34 @@
-"use client";
-
-import Link from "next/link";
 import { CookieSettingsButton } from "@/components/cookie-settings-button";
+
+const linkClass =
+  "inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm px-1 transition-colors duration-150 ease-quiet hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/70 bg-card py-5" role="contentinfo">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col items-center justify-center gap-2 text-xs text-muted-foreground sm:flex-row sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Smog</p>
-          <nav aria-label="Footer navigation" className="flex items-center gap-2 md:gap-3">
-            <Link
-              href="https://beautified.app/imprint"
-              className="rounded-sm py-1 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Imprint
-            </Link>
-            <span className="inline" aria-hidden="true">•</span>
-            <Link
-              href="https://beautified.app/privacy"
-              className="rounded-sm py-1 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Data Privacy
-            </Link>
-            <span className="inline" aria-hidden="true">•</span>
-            <CookieSettingsButton />
-          </nav>
-        </div>
-      </div>
+    <footer
+      className="mx-auto w-full max-w-[1040px] px-5 pt-20 pb-8 text-center text-xs text-muted-foreground md:px-8"
+      role="contentinfo"
+    >
+      <p className="mx-auto max-w-sm text-balance leading-relaxed">
+        As an Amazon Associate I earn from qualifying purchases. Buying through these
+        links supports me at no extra cost to you.
+      </p>
+      <nav
+        aria-label="Footer navigation"
+        className="mt-2 flex flex-wrap items-center justify-center gap-x-1"
+      >
+        <span>&copy; {new Date().getFullYear()} Smog</span>
+        <span aria-hidden="true">·</span>
+        <a href="https://beautified.app/imprint" target="_blank" rel="noopener noreferrer" className={linkClass}>
+          Imprint
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href="https://beautified.app/privacy" target="_blank" rel="noopener noreferrer" className={linkClass}>
+          Privacy
+        </a>
+        <span aria-hidden="true">·</span>
+        <CookieSettingsButton className={linkClass} />
+      </nav>
     </footer>
   );
 }
-
