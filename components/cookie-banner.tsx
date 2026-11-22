@@ -120,12 +120,14 @@ export function CookieBanner() {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 z-50 w-[320px] max-w-[calc(100vw-2rem)] bg-background border rounded-lg shadow-lg p-3 space-y-2 animate-in slide-in-from-bottom-2 fade-in-0">
+      <div className="fixed bottom-4 right-4 z-50 w-[320px] max-w-[calc(100vw-2rem)] bg-card border rounded-2xl p-3 space-y-2 animate-in slide-in-from-bottom-2 fade-in-0">
         <div className="flex items-start justify-between gap-2">
           <p className="text-xs text-muted-foreground leading-relaxed">
             We use cookies to enhance your experience.{" "}
-            <Link 
-              href="/privacy" 
+            <Link
+              href="https://beautified.app/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
               className="underline hover:text-primary transition-colors"
             >
               Learn more

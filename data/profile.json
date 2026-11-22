@@ -1,6 +1,7 @@
 {
   "name": "Smog",
   "description": "Business inquiries: hi.smogmeister@gmail.com",
+  "email": "hi.smogmeister@gmail.com",
   "image": "https://storage.googleapis.com/storage_images_public/smog_profile.JPG",
   "socialLinks": [
     {
@@ -14,11 +15,6 @@
     {
       "platform": "tiktok",
       "url": "https://www.tiktok.com/@smogmeister"
-    },
-    {
-      "platform": "pinterest",
-      "url": "https://pinterest.com/smogmeister/"
     }
   ]
 }
-

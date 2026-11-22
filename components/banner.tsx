@@ -20,8 +20,8 @@ export function Banner({
 }: BannerProps) {
   return (
     <div className="relative overflow-hidden rounded-lg md:rounded-xl py-2 px-4 mt-6 md:mt-8">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--gradientstart)] to-[var(--gradientend)] opacity-30 border border-[var(--border)]" />
+      {/* Flat background */}
+      <div className="absolute inset-0 bg-accent border border-[var(--border)]" />
       
       {/* Content */}
       <div className="relative flex items-center gap-4 md:gap-6 flex-wrap">

@@ -10,19 +10,28 @@ export default function Home() {
   const cards = getCards();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <main
-        className="flex-1 container mx-auto px-4 pb-8 pt-1 max-w-6xl"
+        className="container mx-auto max-w-6xl flex-1 px-4 pb-12 md:px-6"
         role="main"
         aria-label="Main content"
       >
-        <article className="mt-1 md:mt-4 space-y-4">
+        <article>
           <header>
             <ProfileHeader profile={profile} />
           </header>
-          <section aria-label="Product recommendations">
-            <h2 className="sr-only">Recommended Cleaning and Interior Design Products</h2>
+
+          <section aria-labelledby="picks-heading" className="mt-2 md:mt-4">
+            <h2 id="picks-heading" className="sr-only">
+              Recommended products
+            </h2>
+
             <CardGrid cards={cards} />
+
+            <p className="mx-auto mt-8 max-w-md text-balance text-center text-xs leading-relaxed text-muted-foreground">
+              As an Amazon Associate I earn from qualifying purchases. Buying through
+              these links supports me at no extra cost to you.
+            </p>
           </section>
         </article>
       </main>

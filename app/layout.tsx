@@ -1,23 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "flag-icons/css/flag-icons.min.css";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://smogmeister.com";
 const siteName = "Smog";
 const siteDescription =
-  "Discover Smog's favorite cleaning products, Amazon recommendations, and exclusive deals. Follow Smog on YouTube, Instagram, TikTok, and Pinterest for cleaning tips and home organization hacks.";
+  "Discover Smog's favorite cleaning products, Amazon recommendations, and exclusive deals. Follow Smog on YouTube, Instagram, and TikTok for cleaning tips and home organization hacks.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -117,7 +106,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#faf6f0",
   width: "device-width",
   initialScale: 1,
 };
@@ -137,7 +126,6 @@ const jsonLd = {
         "https://www.youtube.com/@smogmeister1",
         "https://www.instagram.com/smogmeister1",
         "https://www.tiktok.com/@smogmeister",
-        "https://pinterest.com/smogmeister/",
       ],
     },
     {
@@ -197,8 +185,10 @@ export default function RootLayout({
             gtag('config', 'G-RY7BWXYRMZ');
           `}
         </Script>
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=plus-jakarta-sans@400&f[]=zodiak@700&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=plus-jakarta-sans@400,500,600,700&f[]=zodiak@400,700&display=swap"
           rel="stylesheet"
         />
         <script
@@ -206,9 +196,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      {/* Browser extensions (e.g. ColorZilla) inject attributes on <body> before hydration */}
+      <body className="antialiased" suppressHydrationWarning>
         {children}
         <Analytics />
       </body>

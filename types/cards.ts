@@ -11,6 +11,8 @@ export interface Card {
   id: string;
   priority: number;
   title: string;
+  /** Highlights the card with a "Favourite" badge */
+  featured?: boolean;
   image: string;
   links: CountryLinks;
 }
