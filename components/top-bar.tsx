@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TopBarProps {
   name: string;
   image: string;
-  initials: string;
 }
 
 /**
  * Fixed 48px bar, invisible at the top of the page. Once the profile header
  * scrolls away it gains a translucent surface and the avatar + name fade in.
  */
-export function TopBar({ name, image, initials }: TopBarProps) {
+export function TopBar({ name, image }: TopBarProps) {
   const [condensed, setCondensed] = useState(false);
 
   useEffect(() => {
@@ -47,10 +46,9 @@ export function TopBar({ name, image, initials }: TopBarProps) {
             condensed ? "pointer-events-auto opacity-100" : "opacity-0"
           )}
         >
-          <Avatar className="h-6 w-6">
-            <AvatarImage src={image} alt="" className="object-cover" />
-            <AvatarFallback className="text-[10px]">{initials}</AvatarFallback>
-          </Avatar>
+          <span className="relative h-6 w-6 overflow-hidden rounded-full bg-muted">
+            <Image src={image} alt="" fill sizes="24px" className="object-cover" />
+          </span>
           {name}
         </a>
       </div>

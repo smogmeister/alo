@@ -52,6 +52,11 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // Browsers and crawlers request /favicon.ico by default; serve the PNG icon.
+  async rewrites() {
+    return [{ source: "/favicon.ico", destination: "/favicon-32.png" }];
+  },
+
   async redirects() {
     return [
       {

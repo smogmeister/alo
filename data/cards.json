@@ -52,7 +52,7 @@
     {
       "id": "card-5",
       "priority": 5,
-      "title": "Venator",
+      "title": "LEGO Star Wars Venator",
       "image": "https://m.media-amazon.com/images/I/71sNxmGzvlL._AC_SL1500_.jpg",
       "links": {
         "usa": "https://amzn.to/4saWcxF",
@@ -64,7 +64,7 @@
     {
       "id": "card-6",
       "priority": 6,
-      "title": "Study device",
+      "title": "iPad for studying",
       "image": "https://m.media-amazon.com/images/I/61goypdjAYL._AC_SL1500_.jpg",
       "links": {
         "usa": "https://amzn.to/4hQ9HiU",
@@ -76,7 +76,7 @@
     {
       "id": "card-7",
       "priority": 7,
-      "title": "Steam cleaner ",
+      "title": "Steam cleaner",
       "image": "https://m.media-amazon.com/images/I/611nJVMCthL._AC_SL1500_.jpg",
       "links": {
         "usa": "https://amzn.to/4jiEpCh",
@@ -88,7 +88,7 @@
     {
       "id": "card-8",
       "priority": 8,
-      "title": "Window vac ",
+      "title": "Window vac",
       "image": "https://m.media-amazon.com/images/I/61MhXzyU72L._AC_SL1500_.jpg",
       "links": {
         "usa": "https://amzn.to/4s3jLbv",
@@ -100,7 +100,7 @@
     {
       "id": "card-9",
       "priority": 9,
-      "title": "Electric brush ",
+      "title": "Electric brush",
       "image": "https://m.media-amazon.com/images/I/815GvV+L03L._AC_SL1500_.jpg",
       "links": {
         "usa": "https://amzn.to/3W7Zt4M",

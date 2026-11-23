@@ -17,8 +17,11 @@ interface CardProps {
 const EAGER_COUNT = 5;
 
 export function Card({ card, index = 0, variant = "default" }: CardProps) {
+  const isEager = index < EAGER_COUNT;
   const [imageError, setImageError] = useState(false);
-  const [imageLoading, setImageLoading] = useState(true);
+  // Above-the-fold images render visible from the server HTML so they count
+  // for LCP straight away; only lazy images below the fold fade in on load.
+  const [imageLoading, setImageLoading] = useState(!isEager);
 
   const link = card.links.usa;
   const title = card.title.trim();
@@ -66,7 +69,7 @@ export function Card({ card, index = 0, variant = "default" }: CardProps) {
             )}
             <Image
               src={card.image}
-              alt={`${title} - Recommended by Smog`}
+              alt={title}
               fill
               quality={90}
               className={cn(
@@ -85,7 +88,7 @@ export function Card({ card, index = 0, variant = "default" }: CardProps) {
                   ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 520px"
                   : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 250px"
               }
-              loading={index < EAGER_COUNT ? "eager" : "lazy"}
+              loading={isEager ? "eager" : "lazy"}
               fetchPriority={index < 2 ? "high" : undefined}
             />
           </>

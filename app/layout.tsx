@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({
@@ -11,61 +12,13 @@ const geist = Geist({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://smogmeister.com";
-const siteName = "Smog";
-const siteDescription =
-  "Discover Smog's favorite cleaning products, Amazon recommendations, and exclusive deals. Follow Smog on YouTube, Instagram, and TikTok for cleaning tips and home organization hacks.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Smog: Interior Design and Cleaning Recommendations",
+    default: siteTitle,
     template: "%s | Smog",
   },
   description: siteDescription,
-  keywords: [
-    "Smog",
-    "smogmeister",
-    "cleaning tips",
-    "cleaning products",
-    "Amazon recommendations",
-    "home cleaning",
-    "cleaning hacks",
-    "link in bio",
-    "cleaning influencer",
-    "home organization",
-    "cleaning supplies",
-    "Pink Stuff",
-    "vacuum cleaner",
-    "steam cleaner",
-    "interior design",
-    "interior design tips",
-    "home decor",
-    "home decor ideas",
-    "home styling",
-    "home aesthetic",
-    "home inspiration",
-    "house cleaning",
-    "deep cleaning",
-    "cleaning routine",
-    "cleaning motivation",
-    "tidy home",
-    "organized home",
-    "home makeover",
-    "room decor",
-    "living room decor",
-    "bedroom decor",
-    "bathroom cleaning",
-    "kitchen cleaning",
-    "home essentials",
-    "home must haves",
-    "cozy home",
-    "minimalist home",
-    "modern home",
-    "home improvement",
-    "declutter",
-    "decluttering tips",
-  ],
   authors: [{ name: "Smog", url: siteUrl }],
   creator: "Smog",
   publisher: "Smog",
@@ -81,30 +34,24 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "256x256", type: "image/png" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: siteName,
-    title: "Smog: Interior Design and Cleaning Recommendations",
+    title: siteTitle,
     description: siteDescription,
-    images: [
-      {
-        url: "https://storage.googleapis.com/storage_images_public/smog_profile.JPG",
-        width: 400,
-        height: 400,
-        alt: "Smog: Interior Design and Cleaning Recommendations",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smog: Interior Design and Cleaning Recommendations",
+    title: siteTitle,
     description: siteDescription,
-    images: ["https://storage.googleapis.com/storage_images_public/smog_profile.JPG"],
     creator: "@smogmeister",
   },
   alternates: {
@@ -130,7 +77,7 @@ const jsonLd = {
       "@id": `${siteUrl}/#person`,
       name: "Smog",
       alternateName: "smogmeister",
-      description: "Smog: Interior Design and Cleaning Recommendations",
+      description: "Creator sharing the products they actually use, from cleaning gear to PC parts, on YouTube, Instagram and TikTok",
       url: siteUrl,
       image: "https://storage.googleapis.com/storage_images_public/smog_profile.JPG",
       sameAs: [
@@ -154,7 +101,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": `${siteUrl}/#webpage`,
       url: siteUrl,
-      name: "Smog: Interior Design and Cleaning Recommendations",
+      name: siteTitle,
       isPartOf: {
         "@id": `${siteUrl}/#website`,
       },

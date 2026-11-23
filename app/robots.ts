@@ -1,17 +1,15 @@
 import { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://smogmeister.com";
-
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
   };
 }

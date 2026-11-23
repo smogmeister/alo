@@ -1,26 +1,18 @@
 import { MetadataRoute } from "next";
+import { siteDescription, siteTitle } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Smog - Cleaning Tips & Product Recommendations",
+    name: siteTitle,
     short_name: "Smog",
-    description:
-      "Discover Smog's favorite cleaning products, Amazon recommendations, and exclusive deals.",
+    description: siteDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#ffffff",
+    background_color: "#fafaf8",
+    theme_color: "#fafaf8",
     icons: [
-      {
-        src: "/favicon.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "/favicon.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/favicon.png", sizes: "256x256", type: "image/png" },
     ],
   };
 }

@@ -1,18 +1,36 @@
-import { ProfileHeader, getInitials } from "@/components/profile-header";
+import { ProfileHeader } from "@/components/profile-header";
 import { Footer } from "@/components/footer";
 import { CookieBanner } from "@/components/cookie-banner";
 import { CardGrid } from "@/components/card-grid";
 import { TopBar } from "@/components/top-bar";
 import { loadProfile } from "@/lib/profile";
 import { getCards } from "@/lib/cards";
+import { siteUrl } from "@/lib/site";
 
 export default function Home() {
   const profile = loadProfile();
   const cards = getCards();
+  const products = cards.filter((card) => card.links.usa);
+
+  // Describes the shelf as an ordered list of products for search engines.
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${siteUrl}/#products`,
+    name: `${profile.name}'s recommended products`,
+    numberOfItems: products.length,
+    itemListElement: products.map((card, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: card.title.trim(),
+      url: card.links.usa,
+      image: card.image,
+    })),
+  };
 
   return (
     <div id="top" className="flex min-h-screen flex-col">
-      <TopBar name={profile.name} image={profile.image} initials={getInitials(profile.name)} />
+      <TopBar name={profile.name} image={profile.image} />
 
       <main
         className="animate-quiet-enter mx-auto w-full max-w-[1040px] flex-1 px-5 md:px-8"
@@ -33,6 +51,11 @@ export default function Home() {
           </section>
         </article>
       </main>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
+      />
 
       <Footer />
       <CookieBanner />

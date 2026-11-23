@@ -1,20 +1,11 @@
 import { Mail } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Image from "next/image";
 import { SocialLinks } from "@/components/social-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Profile } from "@/types/profile";
 
 interface ProfileHeaderProps {
   profile: Profile;
-}
-
-export function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
 }
 
 export function ProfileHeader({ profile }: ProfileHeaderProps) {
@@ -27,17 +18,18 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
     >
       {/* Hairline ring with a background-colored mat, like a mounted print */}
       <div className="rounded-full ring-1 ring-border ring-offset-2 ring-offset-background">
-        <Avatar className="h-[88px] w-[88px]">
-          <AvatarImage
+        {/* Real <img> in the server HTML, resized and optimized by next/image */}
+        <div className="relative h-[88px] w-[88px] overflow-hidden rounded-full bg-muted">
+          <Image
             src={profile.image}
-            alt={`${profile.name} - Interior design creator and product reviewer`}
+            alt={`${profile.name}, creator`}
+            fill
+            sizes="88px"
+            priority
             className="object-cover"
             itemProp="image"
           />
-          <AvatarFallback className="text-2xl font-medium text-muted-foreground">
-            {getInitials(profile.name)}
-          </AvatarFallback>
-        </Avatar>
+        </div>
       </div>
 
       {/* Toggle sits beside the name without pulling it off-center */}
