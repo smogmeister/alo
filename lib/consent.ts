@@ -3,6 +3,8 @@
 
 export const COOKIE_CONSENT_KEY = "cookie-consent";
 export const COOKIE_PREFERENCES_KEY = "cookie-preferences";
+/** Fired on window after a choice is saved, so open components can react. */
+export const CONSENT_EVENT = "cookie-consent-change";
 
 export type CookiePreferences = {
   necessary: boolean;
@@ -80,6 +82,7 @@ export function savePreferences(prefs: CookiePreferences) {
       JSON.stringify({ ...prefs, necessary: true })
     );
     localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
+    window.dispatchEvent(new Event(CONSENT_EVENT));
   } catch (error) {
     console.error("Error saving cookie preferences:", error);
   }

@@ -1,39 +1,9 @@
-import { CardsData, Card } from "@/types/cards";
+import { Card } from "@/types/cards";
 import cardsData from "@/data/cards.json";
 
-/**
- * Loads and returns all card data
- */
-export function loadCardsData(): CardsData {
-  return cardsData as CardsData;
-}
-
-/**
- * Gets all cards sorted by priority
- */
+/** The cards that have a US link, in priority order. The one place this rule lives. */
 export function getCards(): Card[] {
-  const data = loadCardsData();
-  return data.cards.sort((a, b) => a.priority - b.priority);
+  return (cardsData.cards as Card[])
+    .filter((card) => card.links.usa)
+    .toSorted((a, b) => a.priority - b.priority);
 }
-
-/**
- * Gets a specific card by ID
- */
-export function getCard(cardId: string): Card | null {
-  const data = loadCardsData();
-  return data.cards.find((c) => c.id === cardId) || null;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

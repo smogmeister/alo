@@ -2,10 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Only the hosts the site really uses, so nobody else can bill our optimizer.
     remotePatterns: [
+      { protocol: "https", hostname: "m.media-amazon.com", pathname: "/images/**" },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "storage.googleapis.com",
+        pathname: "/storage_images_public/**",
       },
     ],
     formats: ["image/avif", "image/webp"],

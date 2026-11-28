@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test --experimental-strip-types --no-warnings=ExperimentalWarning \"lib/*.test.ts\""
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",
     "@vercel/analytics": "^1.4.1",
@@ -20,7 +20,6 @@
     "next-themes": "^0.4.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "server-only": "^0.0.1",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

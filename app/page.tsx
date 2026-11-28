@@ -3,14 +3,17 @@ import { Footer } from "@/components/footer";
 import { CookieBanner } from "@/components/cookie-banner";
 import { CardGrid } from "@/components/card-grid";
 import { TopBar } from "@/components/top-bar";
-import { loadProfile } from "@/lib/profile";
+import profileData from "@/data/profile.json";
+import type { Profile } from "@/types/profile";
 import { getCards } from "@/lib/cards";
 import { siteUrl } from "@/lib/site";
 
+// Rebuild the static page daily so the footer's copyright year never goes stale.
+export const revalidate = 86400;
+
 export default function Home() {
-  const profile = loadProfile();
-  const cards = getCards();
-  const products = cards.filter((card) => card.links.usa);
+  const profile = profileData as Profile;
+  const products = getCards();
 
   // Describes the shelf as an ordered list of products for search engines.
   const itemListLd = {
@@ -47,7 +50,7 @@ export default function Home() {
               Recommended products
             </h2>
 
-            <CardGrid cards={cards} />
+            <CardGrid cards={products} />
           </section>
         </article>
       </main>

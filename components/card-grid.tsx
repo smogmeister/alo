@@ -6,9 +6,7 @@ interface CardGridProps {
 }
 
 export function CardGrid({ cards }: CardGridProps) {
-  const available = cards.filter((card) => card.links.usa);
-
-  if (available.length === 0) {
+  if (cards.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed py-16 text-center text-sm text-muted-foreground">
         <p>No products available right now. Check back soon.</p>
@@ -17,11 +15,11 @@ export function CardGrid({ cards }: CardGridProps) {
   }
 
   // The first featured card becomes the hero tile at the top of the grid.
-  const heroIndex = available.findIndex((card) => card.featured);
+  const heroIndex = cards.findIndex((card) => card.featured);
   const ordered =
     heroIndex > 0
-      ? [available[heroIndex], ...available.filter((_, i) => i !== heroIndex)]
-      : available;
+      ? [cards[heroIndex], ...cards.filter((_, i) => i !== heroIndex)]
+      : cards;
   const hasHero = heroIndex !== -1;
 
   return (

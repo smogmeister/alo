@@ -13,7 +13,7 @@ const PLATFORM_NAMES: Record<string, string> = {
 };
 
 export function GET() {
-  const products = getCards().filter((card) => card.links.usa);
+  const products = getCards();
   const lines = [
     `# ${siteTitle}`,
     "",

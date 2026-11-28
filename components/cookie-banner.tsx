@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CookiePreferencesDialog } from "@/components/cookie-preferences-dialog";
 import {
   ALL_ACCEPTED,
+  CONSENT_EVENT,
   NECESSARY_ONLY,
   hasConsentDecision,
   savePreferences,
@@ -19,6 +20,10 @@ export function CookieBanner() {
     // localStorage is client-only; decide after mount to avoid a hydration mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!hasConsentDecision()) setIsVisible(true);
+    // A choice saved elsewhere (e.g. the footer's Cookies link) closes the banner.
+    const hide = () => setIsVisible(false);
+    window.addEventListener(CONSENT_EVENT, hide);
+    return () => window.removeEventListener(CONSENT_EVENT, hide);
   }, []);
 
   const decide = (accept: boolean) => {
@@ -83,7 +88,6 @@ export function CookieBanner() {
       <CookiePreferencesDialog
         open={isSettingsOpen}
         onOpenChange={setIsSettingsOpen}
-        onSaved={() => setIsVisible(false)}
       />
     </>
   );

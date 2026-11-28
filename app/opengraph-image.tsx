@@ -6,7 +6,25 @@ export const alt = "Smog: Stuff I Actually Use";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Fetch the photo ourselves so a storage outage drops the photo instead of
+// failing the whole build.
+async function loadAvatar(): Promise<string | null> {
+  try {
+    const res = await fetch(profile.image);
+    if (!res.ok) {
+      console.warn(`opengraph-image: profile photo HTTP ${res.status}, card built without it`);
+      return null;
+    }
+    const type = res.headers.get("content-type") ?? "image/jpeg";
+    return `data:${type};base64,${Buffer.from(await res.arrayBuffer()).toString("base64")}`;
+  } catch (error) {
+    console.warn("opengraph-image: profile photo unreachable, card built without it", error);
+    return null;
+  }
+}
+
 export default async function OpengraphImage() {
+  const avatar = await loadAvatar();
   return new ImageResponse(
     (
       <div
@@ -22,18 +40,20 @@ export default async function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={profile.image}
-          alt=""
-          width={260}
-          height={260}
-          style={{
-            borderRadius: 9999,
-            objectFit: "cover",
-            border: "1px solid #ECEAE5",
-          }}
-        />
+        {avatar && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={avatar}
+            alt=""
+            width={260}
+            height={260}
+            style={{
+              borderRadius: 9999,
+              objectFit: "cover",
+              border: "1px solid #ECEAE5",
+            }}
+          />
+        )}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 96, fontWeight: 600, letterSpacing: -2 }}>
             {profile.name}

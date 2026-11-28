@@ -123,23 +123,16 @@ function DialogBody({ onDone }: { onDone: () => void }) {
 interface CookiePreferencesDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSaved?: () => void;
 }
 
 export function CookiePreferencesDialog({
   open,
   onOpenChange,
-  onSaved,
 }: CookiePreferencesDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       {open && (
-        <DialogBody
-          onDone={() => {
-            onOpenChange(false);
-            onSaved?.();
-          }}
-        />
+        <DialogBody onDone={() => onOpenChange(false)} />
       )}
     </Dialog>
   );

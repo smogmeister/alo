@@ -1,5 +1,3 @@
-export type CountryCode = 'usa' | 'canada' | 'germany' | 'uk';
-
 export interface CountryLinks {
   usa?: string;
   canada?: string;
@@ -11,26 +9,8 @@ export interface Card {
   id: string;
   priority: number;
   title: string;
-  /** Highlights the card with a "Favourite" badge */
+  /** Shown as the large first tile */
   featured?: boolean;
   image: string;
   links: CountryLinks;
 }
-
-export interface CardsData {
-  cards: Card[];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
